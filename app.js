@@ -7,12 +7,23 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+const { ApolloServer } = require('apollo-server-express');
+const typeDefs = require('./schema');
+const resolvers = require('./resolvers');
+const WeatherAPI = require('./datasources/weather');
 
-09aa4d0164a773bb6c75761d257e52e4
+const dataSources = () => ({
+  weatherAPI: new WeatherAPI()
+});
 
-
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  dataSources,
+});
 
 var app = express();
+server.applyMiddleware({ app });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
