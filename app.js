@@ -11,14 +11,22 @@ const { ApolloServer } = require('apollo-server-express');
 const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
 const WeatherAPI = require('./datasources/weather');
+const ApiXuWeatherAPI = require('./datasources/apixuweather');
+
+const { RedisCache } = require('apollo-server-cache-redis');
 
 const dataSources = () => ({
-  weatherAPI: new WeatherAPI()
+  weatherAPI: new WeatherAPI(),
+  apiXuWeatherAPI: new ApiXuWeatherAPI()
 });
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  cache: new RedisCache({
+    host: '10.0.0.3',
+    port: 6379
+  }),
   dataSources,
 });
 
