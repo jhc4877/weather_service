@@ -64,7 +64,7 @@ const typeDefs = gql`
 
   type Current {
     last_updated_epoch: Int
-    last_updated: "String"
+    last_updated: String
     temp_c: Float
     temp_f: Float
     is_day: Int
