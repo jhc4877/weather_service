@@ -25,7 +25,7 @@ const typeDefs = gql`
     lon: Float
     tz_id: String
     localtime_epoch: Int
-    localtime: Int
+    localtime: String
   }
 
   type Forecastday {
@@ -45,9 +45,9 @@ const typeDefs = gql`
     maxwind_mph: Float
     maxwind_kph: Float
     totalprecip_mm: Float
-    totalprecip_in: Int
-    avgvis_km: Int
-    avgvis_miles: Int
+    totalprecip_in: Float
+    avgvis_km: Float
+    avgvis_miles: Float
     avghumidity: Int
     condition: Condition
     uv: Float
@@ -58,11 +58,13 @@ const typeDefs = gql`
     sunset: String
     moonrise: String
     moonset: String
+    moon_phase: String
+    moon_illumination: String
   }
 
   type Current {
     last_updated_epoch: Int
-    last_updated: Int
+    last_updated: "String"
     temp_c: Float
     temp_f: Float
     is_day: Int
